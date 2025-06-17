@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>sippit</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="background"></div>
+    <div class="background2" id="background2"></div>
+    <div class="titlebar">
+      <div class="item-1"></div>
+      <div class="bar-button item-2"><button id="minimizeButton"><img src="images/minimizeButton.png" alt="-" draggable="false"></button></div>
+      <div class="bar-button item-3"><button id="exitButton"><img src="images/closeButton.png" alt="x" draggable="false"></button></div>
+    </div>
+
+    <div class="main-view">
+      <div class="cell fold-btn">
+        <input type="checkbox" id="info-btn" hidden>
+        <label for="info-btn" class="checkbox-image"></label>
+      </div>
+      <button class="cell cell-2" id="refill-btn"><img src="images/refillButton.png" alt="refill"></button>
+      <div class="cell cell-1">
+        <div class="bottle-container">
+          <img src="images/bottleWater.png" id="water-fill" draggable="false">
+          <img src="images/bottleEmpty.png" class="bottle-overlay" draggable="false">
+          <div id="remaining-number">EMPTY ml</div>
+        </div>
+      </div>
+      <div class="cell cell-2"><button id="sip-btn"><img src="images/sipButton.png" alt="sip" draggable="false"></button></div>
+    </div>
+
+    <div id="sip-menu">
+      <div class="box sip-amount-field">
+        <form class="sip-form">
+          <img src = "images/sipTextField.png" class="sip-field-img" draggable="false">
+          <input type="text" class="sip-amount-input" id="sip-amount-input">
+        </form>
+      </div>
+      <div class="box2"><button id="no-btn"><img src="images/noButton.png" alt="no" draggable="false"></button></div>
+      <div class="box2"><button id="yes-btn"><img src="images/yesButton.png" alt="yes" draggable="false"></button></div>
+    </div>
+
+    <div class="info-view">
+      <h1 class="cell" id="testtest">Hello, World!</h1>
+      <h1 class="cell" id="testtest">Hello, World!</h1>
+      <h1 class="cell" id="testtest">Hello, World!</h1>
+      <h1 class="cell" id="testtest">Hello, World!</h1>
+      <h1 class="cell" id="testtest">Hello, World!</h1>
+      <h1 class="cell" id="testtest">Hello, World!</h1>
+      <h1 class="cell" id="testtest">Hello, World!</h1>
+      <h1 class="cell" id="testtest">Hello, World!</h1>
+      <h1 class="cell" id="testtest">Hello, World!</h1>
+    </div>
+
+  </body>
+  <script defer src="js/eventHandlers.js"></script>
+  <script defer src="js/eventRegister.js"></script>
+</html>
