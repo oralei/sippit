@@ -1,8 +1,8 @@
 {
-  "name": "my-app",
-  "productName": "my-app",
+  "name": "sippit",
+  "productName": "sippit",
   "version": "1.0.0",
-  "description": "My Electron application description",
+  "description": "A water tracking app.",
   "main": "src/index.js",
   "scripts": {
     "start": "electron-forge start",
