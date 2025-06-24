@@ -1,7 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('node:path');
 
-// hot reload
+// hot reload - REMOVE WHEN DOING npm run make
 require('electron-reload')(__dirname, {
   electron: require(`${__dirname}/../node_modules/electron`)
 });
@@ -27,6 +27,7 @@ const createWindow = () => {
     fullscreenable: false,
     transparent: true,   // allows the background to be transparent
     hasShadow: false,    // optional: disables shadow around the window
+    icon: '/images/icon.png',
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: true

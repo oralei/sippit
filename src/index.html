@@ -19,15 +19,27 @@
         <input type="checkbox" id="info-btn" hidden>
         <label for="info-btn" class="checkbox-image"></label>
       </div>
-      <button class="cell cell-2" id="refill-btn"><img src="images/refillButton.png" alt="refill"></button>
+      <div id="timer" class="cell">00:00</div>
       <div class="cell cell-1">
-        <div class="bottle-container">
+        <div class="bottle-container" id="bottle-container">
           <img src="images/bottleWater.png" id="water-fill" draggable="false">
           <img src="images/bottleEmpty.png" class="bottle-overlay" draggable="false">
-          <div id="remaining-number">EMPTY ml</div>
+          <div id="remaining-ml">EMPTY ml</div>
+          <div id="remaining-oz">EMPTY oz</div>
         </div>
       </div>
       <div class="cell cell-2"><button id="sip-btn"><img src="images/sipButton.png" alt="sip" draggable="false"></button></div>
+    </div>
+    <img src="images/darkscreen.png" id="darkscreen1" draggable="false">
+
+    <div id="fill-menu">
+      <a id="fill-header">Set Current Amount</a>
+      <div class="slidecontainer">
+        <input type="range" step="0.5" min="0" max="100" value="50" class="slider" id="fill-slider">
+      </div>
+      <a id="fill-percent">50%</a>
+      <div class="box3"><button id="no-btn2"><img src="images/noButton.png" alt="no" draggable="false"></button></div>
+      <div class="box3"><button id="yes-btn2"><img src="images/yesButton.png" alt="yes" draggable="false"></button></div>
     </div>
 
     <div id="sip-menu">
@@ -42,15 +54,36 @@
     </div>
 
     <div class="info-view">
-      <h1 class="cell" id="testtest">Hello, World!</h1>
-      <h1 class="cell" id="testtest">Hello, World!</h1>
-      <h1 class="cell" id="testtest">Hello, World!</h1>
-      <h1 class="cell" id="testtest">Hello, World!</h1>
-      <h1 class="cell" id="testtest">Hello, World!</h1>
-      <h1 class="cell" id="testtest">Hello, World!</h1>
-      <h1 class="cell" id="testtest">Hello, World!</h1>
-      <h1 class="cell" id="testtest">Hello, World!</h1>
-      <h1 class="cell" id="testtest">Hello, World!</h1>
+
+      <h1 id="welcome-name">Hello, Mark!</h1>
+      <h1 id="level-number">Level 1</h1>
+      <h1 id="bottle-size">Bottle Capacity</h1>
+      <h1 id="daily-goal">Daily Goal: 0% </h1>
+      <h1 id="reminder-header">Reminder</h1>
+      <h1 id="total-today">Total today: </h1>
+      <h1 id="average-sip">Average Sip: </h1>
+
+      <div class="quest-board">
+        <h1 id="quests-header">Daily Quests</h1>
+
+        <div class="quest" data-quest-id="1">
+          <div class="quest-name">Drink Water</div>
+          <div class="quest-progress">1000/1200 ml</div>
+          <img src = "images/yesSimple.png" class="quest-complete" draggable="false">
+        </div>
+
+        <div class="quest" data-quest-id="2">
+          <div class="quest-name">Drink Water</div>
+          <div class="quest-progress">1000/1200 ml</div>
+        </div>
+
+        <div class="quest" data-quest-id="3">
+          <div class="quest-name">Sip four times in a single hour</div>
+          <div class="quest-progress">0/4 sips</div>
+        </div>
+
+      </div>
+
     </div>
 
   </body>

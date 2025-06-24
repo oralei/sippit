@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Jersey+15&display=swap');
 
+/* 
+  z-index values (top to bottom):
+
+  darkscreen: 500
+
+*/
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
     Arial, sans-serif;
@@ -7,6 +14,19 @@ body {
   max-width: 1fr;
   padding: 0;
   overflow: hidden; /* removes scroll bars */
+}
+
+a, div {
+  font-family: "Jersey 15", sans-serif;
+  font-size: 24px;
+
+  user-select: none;
+}
+
+:focus {
+  outline: 0;
+  outline-color: transparent;
+  outline-style: none;
 }
 
 img3 { 
@@ -19,17 +39,38 @@ img3 {
     -ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
 }
 
-img{
-    -khtml-user-select: none;
-    -o-user-select: none;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    user-select: none;
+img {
+  -khtml-user-select: none;
+  -o-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .title-text {
   text-align: center;
   margin: 10px;
+}
+
+/* starts hidden */
+#darkscreen1 {
+  position: absolute;
+  top: 0;
+  opacity: 0;
+  z-index: 500;
+
+  clip-path: inset(30px 0 0 0); /* cut top 50px */
+  width: 300px;
+
+  transition: opacity 100ms ease, visibility 100ms ease;
+  pointer-events: none;
+}
+
+/* Visible (fading in) state */
+#darkscreen1.active {
+  opacity: 0.8;
+  visibility: visible;
+  pointer-events: auto;
 }
 
 .background {
@@ -138,6 +179,15 @@ input[type="checkbox"]:checked + .checkbox-image {
   scale: 100%;
   margin-bottom: 10px;
   z-index: 30;
+
+  transition: transform 300ms ease-out, filter 200ms ease-in-out;
+  transform: translateY(0);
+}
+
+#sip-btn:hover {
+  cursor: pointer;
+  animation: bounce 300ms ease;
+  filter: brightness(1.2);
 }
 
 button {
@@ -147,8 +197,9 @@ button {
 }
 
 button:hover {
+  cursor: pointer;
   filter: brightness(1.5);
-  transition: ease 70ms;
+  transition: ease-in-out 70ms;
 }
 
 button:active {
@@ -163,10 +214,6 @@ button:active {
   transition: ease-out 70ms;
 }
 
-#sip-btn:hover {
-  filter: brightness(1.2);
-}
-
 .main-view {
   position: relative;
   display: grid;
@@ -178,21 +225,53 @@ button:active {
 
   margin: 10px;
 
-  background-color: #ffffff00;
+  background-color: #ff000000;
+  border: 2px solid #ae00ff00;
+
+  z-index: 323;
+}
+
+#timer {
+  position: relative;
+  display: block;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  grid-column: 1 / 1;
+  grid-row: 0 / 0;
+
+  width: 275px;
+
+  font-size: 34px;
+  transform: translate(-2px, -10px);
+  color: #aaa4b6;
+
+  border: 2px solid #ae00ff00;
 }
 
 .bottle-container {
   position: relative;
   align-self: center;
+  justify-content: center;
   width: 122px;
   height: 346px;
+
+  transition: filter 200ms;
+  transform: translate(0px, 20px);
+
+  border: 2px solid #ae00ff00;
+  cursor: pointer;
+}
+
+.bottle-container:hover {
+  filter: brightness(110%);
 }
 
 .bottle-container img {
   position: absolute;
   width: 100%;
   height: 100%;
-  scale: 120%;
+  scale: 110%;
   bottom: 11px;
   object-fit: contain;
 }
@@ -205,6 +284,88 @@ button:active {
   z-index: 1;
   clip-path: inset(0% 0 0 0); /* top% right bottom left */
   transition: clip-path 0.5s ease;
+}
+
+#fill-menu {
+  position: absolute;
+
+  background-image: url('images/fillMenu.png');
+  background-size: cover;
+  background-position: center;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  top: 200px;
+  left: 25px;
+  transition: bottom 0.5s ease;
+  width: 250px;
+  height: 150px;
+  background-color: #ff000000;
+  z-index: 990;
+
+  opacity: 0;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 100ms ease, visibility 100ms ease;
+  pointer-events: none;
+
+}
+
+#fill-menu.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+#fill-percent {
+  font-size: 26px;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  transform: translate(0px, 5px);
+}
+
+#fill-header {
+  font-size: 24px;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  top: 15px;
+}
+
+.slidecontainer {
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+#fill-slider {
+  position: relative;
+  top: -20px;
+  left: 11px;
+  width: 88%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  border-radius: 3px;
+  border: 3px solid #262133;
+  height: 6px;
+  background: linear-gradient(to right, #7FE2E2 50%, #5c5964 50%);
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 17px;
+  height: 17px;
+  border: 0;
+  background: url('images/sliderDot.png');
+  cursor: pointer;
 }
 
 #sip-menu {
@@ -224,7 +385,7 @@ button:active {
   width: 300px;
   height: 145px;
   background-color: #ff000000;
-  z-index: 40;
+  z-index: 990;
 }
 
 .cell {
@@ -320,11 +481,43 @@ button:active {
   z-index: 5;
 }
 
+.box3 {
+  position: relative;
+  border: 2px solid #00000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 50px;
+  bottom: -45px;
+
+  z-index: 5;
+}
+
 #yes-btn, #no-btn {
   
 }
 
-#remaining-number {
+#remaining-oz {
+  position: absolute;
+  top: 48%;
+  width: 100%;
+
+  color: #000000af;
+  font-family: "Jersey 15", sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  font-style: normal;
+  text-align: center;
+  z-index: 20;
+
+  transform: translate(0, 25px);
+
+  background-color: #0026ff00;
+  user-select: none;
+}
+
+#remaining-ml {
   position: absolute;
   top: 48%;
   width: 100%;
@@ -344,36 +537,74 @@ button:active {
 .info-view {
   position: absolute;
   display: grid;
-  grid-template-rows: 102px 102px 102px 102px 102px;
+  grid-template-rows: repeat(10, 10%);
   grid-template-columns: 118px 118px 118px 118px 118px;
+  row-gap: 10px;
   left: 300px;
   top: 30px;
 
   background-color: #00ff2200;
-  border: 2px solid #ff0000;;
+  border: 2px solid #ff000000;;
   z-index: 3000;
 }
 
-#testtest {
+h1 {
   display: flex;
-  grid-column: 0 / 0;
-  grid-row: 0 / 0;
 
   color: #000;
   font-family: "Jersey 15", sans-serif;
   font-size: 25px;
   font-weight: 400;
   font-style: normal;
-  text-align: center;
-  justify-content: center;
+  text-align: left;
+
   z-index: 20;
 
   margin: 2px;
   height: 20px;
 
-  border: 1px solid #ff0000;;
-  background-color: #ffffff27;
+  text-align: left;
+
+  border: 1px solid #ff000000;;
+  background-color: #5900ff00;
   user-select: none;
+}
+
+#level-number {
+  grid-column: 3 / 3;
+  grid-row: 0 / 0;
+
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+#bottle-size {
+  width: 150px;
+  grid-column: 0 / 0;
+  grid-row: 3 / 3;
+}
+
+#daily-goal {
+  width: 150px;
+  grid-column: 0 / 0;
+  grid-row: 4 / 4;
+}
+
+#reminder-header {
+  grid-column: 0 / 0;
+  grid-row: 5 / 5;
+}
+
+#total-today {
+  grid-column: 0 / 0;
+  grid-row: 6 / 6;
+}
+
+#average-sip {
+  width: 150px;
+  grid-column: 0 / 0;
+  grid-row: 7 / 7;
 }
 
 .fold-btn {
@@ -383,27 +614,91 @@ button:active {
   grid-column: 5 / 5;
   grid-row: 1 / 1;
   top: -15px;
-  left: 11px;
+  left: 8px;
   justify-content: center;
   align-items: center;
 
   width: 50px;
 
-  z-index: 5;
+  z-index: 300;
 }
 
-#refill-btn {
-  position: relative;
-  border: 2px solid #00000000;
+.quest-board {
+  grid-column: 1 / 6;
+  grid-row: 9 / 10;
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 30px 90px;
+
+  border: 1px solid #ff000000;;
+  background-color: #5900ff00;
+
+  transform: translate(-2.5px, 5px);
+}
+
+.quest {
   display: flex;
-  grid-column: 3 / 3;
-  grid-row: 10 / 10;
-  top: -8px;
-  left: 100px;
+  flex-direction: column; /* cool new thing! */
+  grid-row: 2 / 2;
+
+  text-align: center;
   justify-content: center;
   align-items: center;
 
-  width: 50px;
+  border: 3px solid #000000;;
+  border-radius: 5px;
+  background-color: #c8c6ce;
 
-  z-index: 10;
+  margin: 5px;
+
+  transition: background-color 200ms;
+}
+
+.quest:hover {
+  background-color: #ffe388;
+}
+
+.quest-name {
+  font-size: 24px;
+}
+
+.quest-progress {
+  display: block;
+  font-size: 20px;
+}
+
+.quest-complete {
+  position: absolute;
+  transform: translate(80px, -34px);
+}
+
+#quests-header {
+  grid-column: 2 / 2;
+  grid-row: 1 / 1;
+
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+
+  color: rgb(255, 255, 255);
+  paint-order: stroke fill;
+  -webkit-text-stroke-width: 4px;
+  -webkit-text-stroke-color: black;
+
+  border: 1px solid #ffffff00;;
+  background-color: #00f7ff00;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
